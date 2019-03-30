@@ -9,24 +9,24 @@ var ai = {
     },
     dictionary: {
         'bill': `<div>
-            <button class="btn btn-info col-12"> bill </button><br>
-            <button class="btn btn-info col-12"> fees </button><br>
+            <button class="btn btn-info col-12 appt"> bill </button><br>
+            <button class="btn btn-info col-12 appt"> fees </button><br>
             </div>`,
         'phone': `<div>
-            <button class="btn btn-info col-12"> plan </button><br>
-            <button class="btn btn-info col-12"> service </button><br>
+            <button class="btn btn-info col-12 appt"> plan </button><br>
+            <button class="btn btn-info col-12 appt"> service </button><br>
             </div>`,
         'gsm': `<div>
-            <button class="btn btn-info col-12"> unlock </button><br>
-            <button class="btn btn-info col-12"> international </button><br>
+            <button class="btn btn-info col-12 appt"> unlock </button><br>
+            <button class="btn btn-info col-12 appt"> international </button><br>
             </div>`,
         'jailbreak': `<div>
-            <button class="btn btn-info col-12"> unlock </button><br>
-            <button class="btn btn-info col-12"> international </button><br>
+            <button class="btn btn-info col-12 appt"> unlock </button><br>
+            <button class="btn btn-info col-12 appt"> international </button><br>
             </div>`,
         'travel': `<div>
-            <button class="btn btn-info col-12"> unlock </button><br>
-            <button class="btn btn-info col-12"> international </button><br>
+            <button class="btn btn-info col-12 appt"> unlock </button><br>
+            <button class="btn btn-info col-12 appt"> international </button><br>
             </div>`
     }
 }
