@@ -1,3 +1,5 @@
 body {
-    background-color: lightgrey;
+    background-image: url("assets/tmobilecity.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
 }
