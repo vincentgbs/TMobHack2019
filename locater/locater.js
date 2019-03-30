@@ -36,7 +36,7 @@ globalVariable = {
       </table>
     </div>`);
         }, // end render
-        findClosest: function(lat, lng, count=3) {
+        findClosest: function(lat, lng, max=25) {
             // rank distances of stores from current location
             var R = 6371; // radius of earth in km
             var distances = {};
@@ -51,17 +51,8 @@ globalVariable = {
                     Math.cos(rad(lat)) * Math.cos(rad(lat)) * Math.sin(dLong/2) * Math.sin(dLong/2);
                 var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
                 var d = R * c;
-                markers[i]['distance'] = Number((d).toFixed(2)); // add distance to markers object
-                /* add markers to distance if they're in the closest 'count' */
-                let len = (Object.keys(distances).length);
-                if (len < count) {
-                    if (d > farthest['d']) {
-                        farthest = {id: i, d: d};
-                    } // else farthest remains the same
-                    distances[i] = (markers[i]);
-                } else if (d < farthest['d']) {
-                    delete distances[(farthest['id'])];
-                    // need algorithm to assign new farther value
+                markers[i]['distance'] = Number((d).toFixed(2)); // add
+                if (markers[i].distance < max) {
                     distances[i] = (markers[i]);
                 }
             }
@@ -97,5 +88,10 @@ function successCallback(position) {
 function rad(x) {return x*Math.PI/180;}
 
 $(document).ready(function(){
-    // console.debug(markers);
+    // test San Francisco
+    // successCallback({coords: {latitude: 37.774929, longitude: -122.419416}});
+    // test Mountain View
+    // successCallback({coords: {latitude: 37.386052, longitude: -122.083851}});
+    // test Atlanta
+    // successCallback({coords: {latitude: 33.777, longitude: -84.391}});
 });
