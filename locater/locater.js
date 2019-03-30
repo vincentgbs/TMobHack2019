@@ -1,6 +1,19 @@
 globalVariable = {
     locationspage: {
-        render: function(loc) {
+        populateStores: function(locations){
+            var closestStores = '';
+            let locKeys = Object.keys(locations);
+            for(i = 0; i < locKeys.length; i++) {
+                closestStores += `<tr>
+                  <td>`+locations[locKeys[i]].name+`</td>
+                  <td>`+locations[locKeys[i]].address+`</td>
+                  <td>`+(locations[locKeys[i]].distance)+` miles</td>
+                  <td><a href="../gps?lat=`+locations[locKeys[i]].lat+`&lng=`+locations[locKeys[i]].lng+`"><button class="btn btn-primary">Check-in</button></a></td>
+                </tr>`;
+            }
+            return closestStores;
+        },
+        render: function(closestStores) {
             $("body").css('background-image', '');
             $("#root").html(
                 `<h1>Locations</h1>
@@ -19,30 +32,11 @@ globalVariable = {
             <th></th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>`+loc[0].name+`</td>
-            <td>`+loc[0].address+`</td>
-            <td>`+(loc[0].distance?loc[0].distance:0.38)+` miles</td>
-            <td><a href="gps?lat=`+loc[0].lat+`&lng=`+loc[0].lng+`"><button class="btn btn-primary">Check-in</button></a></td>
-          </tr>
-          <tr>
-            <td>`+loc[1].name+`</td>
-            <td>`+loc[1].address+`</td>
-            <td>`+(loc[1].distance?loc[1].distance:0.62)+` miles</td>
-            <td><a href="gps?lat=`+loc[1].lat+`&lng=`+loc[1].lng+`"><button class="btn btn-primary">Check-in</button></a></td>
-          </tr>
-          <tr>
-            <td>`+loc[2].name+`</td>
-            <td>`+loc[2].address+`</td>
-            <td>`+(loc[2].distance?loc[2].distance:1.82)+` miles</td>
-            <td><a href="gps?lat=`+loc[2].lat+`&lng=`+loc[2].lng+`"><button class="btn btn-primary">Check-in</button></a></td>
-          </tr>
-        </tbody>
+        <tbody>`+ closestStores +`</tbody>
       </table>
     </div>`);
         }, // end render
-        findClosest: function(lat, lng, count=4) {
+        findClosest: function(lat, lng, count=3) {
             // rank distances of stores from current location
             var R = 6371; // radius of earth in km
             var distances = {};
@@ -67,9 +61,11 @@ globalVariable = {
                     distances[i] = (markers[i]);
                 } else if (d < farthest['d']) {
                     delete distances[(farthest['id'])];
+                    // need algorithm to assign new farther value
                     distances[i] = (markers[i]);
                 }
             }
+            // console.debug(distances);
             return distances;
         } // end findClosest
     } // end locationspage
@@ -90,13 +86,16 @@ function initGeolocation() {
 function successCallback(position) {
     var stores = globalVariable.locationspage.findClosest(position.coords.latitude, position.coords.longitude);
     setTimeout(function(){
-        globalVariable.locationspage.render(stores);
-    }, 999);
+        var html = globalVariable.locationspage.populateStores(stores);
+        setTimeout(function(){
+            globalVariable.locationspage.render(html);
+        }, 555);
+    }, 555);
 }
 
 // helper function
 function rad(x) {return x*Math.PI/180;}
 
 $(document).ready(function(){
-    //
+    // console.debug(markers);
 });
