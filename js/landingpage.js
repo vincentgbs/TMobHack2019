@@ -1,28 +1,18 @@
 globalVariable.landingpage = {
         render: function() {
-
-
-
-
-            
         // $("body").css('background-image', 'url(assets/tmobilecity.jpg)');
         $("#root").html(`
-        
-        
-
-
-
         <style>
 
 
         .container {
             max-width: 960px;
           }
-          
+
           /*
            * Custom translucent site header
            */
-          
+
           .site-header {
             background-color: rgba(0, 0, 0, .85);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
@@ -36,11 +26,11 @@ globalVariable.landingpage = {
             color: #fff;
             text-decoration: none;
           }
-          
+
           /*
            * Dummy devices (replace them with your own or something else entirely!)
            */
-          
+
           .product-device {
             position: absolute;
             right: 10%;
@@ -52,7 +42,7 @@ globalVariable.landingpage = {
             -webkit-transform: rotate(30deg);
             transform: rotate(30deg);
           }
-          
+
           .product-device::before {
             position: absolute;
             top: 10%;
@@ -63,7 +53,7 @@ globalVariable.landingpage = {
             background-color: rgba(255, 255, 255, .1);
             border-radius: 5px;
           }
-          
+
           .product-device-2 {
             top: -25%;
             right: auto;
@@ -71,12 +61,12 @@ globalVariable.landingpage = {
             left: 5%;
             background-color: #e5e5e5;
           }
-          
-          
+
+
           /*
            * Extra utilities
            */
-          
+
           .flex-equal > * {
             -ms-flex: 1;
             flex: 1;
@@ -87,31 +77,23 @@ globalVariable.landingpage = {
               flex: 1;
             }
           }
-          
+
           .overflow-hidden { overflow: hidden; }
 
 
           </style>
 
-
-
-
           <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
           <div class="col-md-5 p-lg-5 mx-auto my-5">
             <h1 class="display-4 font-weight-normal">Heading to a store?</h1>
             <p class="lead font-weight-normal">Check-in, avoid a line, and get a great deal.</p>
-            <button class="btn btn-outline-secondary" id="startButton">Check-in</button>
+            <a href="appt"><button class="btn btn-outline-secondary">Schedule Appointment</button></a>
             <button class="btn btn-primary" id="locationsButton">Locations</button>
 
           </div>
           <div class="product-device shadow-sm d-none d-md-block"></div>
           <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
         </div>
-
-
-
-
-
 
 
 

@@ -5,15 +5,15 @@ $(document).ready(function(){
         return globalVariable.landingpage.render();
     });
 
-    $(document).on('click', '#startButton', function() {
-        $.getScript("js/question.js", function() {
-            console.log("loaded question.js");
-            return globalVariable.questionpage.render();
-        });
-    });
-    $(document).on("keypress", '#questionInput', function(e) {
-        globalVariable.questionpage.getInput();
-    });
+    // $(document).on('click', '#startButton', function() {
+    //     $.getScript("js/question.js", function() {
+    //         console.log("loaded question.js");
+    //         return globalVariable.questionpage.render();
+    //     });
+    // });
+    // $(document).on("keypress", '#questionInput', function(e) {
+    //     globalVariable.questionpage.getInput();
+    // });
 
     $(document).on('click', '#locationsButton', function() {
         $.getScript("js/locationspage.js", function() {

@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Directions Service</title>
+    <title>Appointment Scheduling</title>
     <link rel="stylesheet" type="text/css"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
@@ -14,7 +14,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="gps.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -51,59 +50,18 @@
             </form>
         </div>
     </nav>
-    <div id="tmob_lightbox" class="center">
-        <div id="appointment">
-            <div class="float-right" id="close_lightbox"> <span class="close-icon"></span></div>
-            <br>
-            Let us know you're on the way and we will automatically put you in line when you are &lt;3 miles away
-            <br><br>
-            <button id="goToStore" class="btn btn-primary">GO NOW</button>
-            <div id="schedule"></div>
-        </div>
+    <div id="root" style="text-align:center">
+
+        <br><br><br><h1>What can I help you with?</h1><input type="text" id="questionInput"><hr><div id="displayOptions"></div>
+
     </div>
-    <br><br><br>
-    <div id="map"></div>
-    <div class="center">
-        <button class="btn btn-primary" id="getDirections">Go to store</button>
+    <div style="text-align:center">
+        <a href="../gps"><button class="btn btn-primary">Go to store</button></a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-    var directionsService;
-    var directionsDisplay;
-    function initMap() {
-        directionsService = new google.maps.DirectionsService;
-        directionsDisplay = new google.maps.DirectionsRenderer;
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
-            center: {lat: 33.777, lng: -84.399}
-        });
-        directionsDisplay.setMap(map);
 
-        var onChangeHandler = function() {};
-        document.getElementById('getDirections').addEventListener('click', findTmobileStore);
-    } // end initMap
-
-    function calculateAndDisplayRoute(directionsService,
-        directionsDisplay, start, end)
-    {
-        directionsService.route({
-            origin: start,
-            destination: end,
-            travelMode: 'DRIVING'
-        }, function(response, status) {
-            if (status === 'OK') {
-                directionsDisplay.setDirections(response);
-            } else {
-                window.alert('Directions request failed due to ' + status);
-            }
-        });
-    } // end calculateAndDisplayRoute
-    </script>
-    <script src="gps.js"></script>
+    <script src="appt.js"></script>
     <script src="ai.js"></script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDxZ09HxPVG4lOH51U2exmt3gNwDgXK_Ck&callback=initMap">
-    </script>
 </body>
 </html>

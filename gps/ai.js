@@ -1,5 +1,8 @@
-// simulate AI for Tmobile's backend scheduling system
-// I don't think we actually have access to Retail Valet API data
+/**
+ * This function simulates AI for Tmobile's backend scheduling system,
+ * Retail Valet. This is only a simulation because we do not actually have
+ * access to the actually Tmobile backend system.
+ **/
 var ai = {
     getSchedule: function() {
         let d = new Date();
@@ -8,7 +11,11 @@ var ai = {
         + `<button class="confirm btn btn-primary">Go at ` + (n+1) + `:`+pad(Math.floor(Math.random()*29), 2)+`</button><br>`
         + `<button class="confirm btn btn-primary">Go at ` + (n+1) + `:`+pad(Math.floor(Math.random()*29)+30, 2)+`</button><br>`);
     },
-    assignStoreLocation: function(input) {
-        //
-    }
+}
+
+// helper function
+function pad(num, size) {
+    let s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
 }

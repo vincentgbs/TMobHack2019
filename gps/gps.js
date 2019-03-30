@@ -45,16 +45,9 @@ function successCallback(position) {
     );
     if ($_GET['lat'] && $_GET['lng']) {
         calculateAndDisplayRoute(directionsService, directionsDisplay, myLatlng, getClosestStore($_GET['lat'], $_GET['lng']));
-    } else {
+    } else { // defaults to Tech Square Tmobile
         calculateAndDisplayRoute(directionsService, directionsDisplay, myLatlng, getClosestStore());
     }
-}
-
-// helper function
-function pad(num, size) {
-    let s = num+"";
-    while (s.length < size) s = "0" + s;
-    return s;
 }
 
 // helper function
