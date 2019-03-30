@@ -15,4 +15,19 @@ $(document).ready(function(){
         globalVariable.questionpage.getInput();
     });
 
+    $(document).on('click', '#locationsButton', function() {
+        $.getScript("js/locationspage.js", function() {
+            console.log("loaded locationspage.js");
+            return globalVariable.locationspage.render();
+        });
+    });
+
+    $(document).on('click', '#williamsButton', function() {
+        $.getScript("js/williamsstreetnearby.js", function() {
+            console.log("loaded williamsstreetnearby.js");
+            return globalVariable.williams.render();
+        });
+    });
+
+
 });
