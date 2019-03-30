@@ -22,12 +22,12 @@ $(document).ready(function(){
         });
     });
 
-    $(document).on('click', '#williamsButton', function() {
-        $.getScript("js/williamsstreetnearby.js", function() {
-            console.log("loaded williamsstreetnearby.js");
-            return globalVariable.williams.render();
-        });
-    });
+    // $(document).on('click', '#williamsButton', function() {
+    //     $.getScript("js/williamsstreetnearby.js", function() {
+    //         console.log("loaded williamsstreetnearby.js");
+    //         return globalVariable.williams.render();
+    //     });
+    // });
 
     $(document).on('click', '#moesButton', function() {
         $.getScript("js/moescoupon.js", function() {

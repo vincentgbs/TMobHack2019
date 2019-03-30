@@ -29,7 +29,7 @@ function initGeolocation() {
 function errorCallback() { console.log("errorCallback"); }
 
 /* Normally this would just call the google api to find the closest tmobile store but since we're doing this hackathon at Georgia Tech, it's more fun to route everyone to the Tech Square Tmobile store */
-function getClosestStore(lat=33.7757966, lng=-84.4014967) {
+function getClosestStore(lat=33.7770606, lng=-84.3901865) {
     let store = new google.maps.LatLng(
         lat,
         lng
@@ -43,7 +43,11 @@ function successCallback(position) {
         position.coords.latitude,
         position.coords.longitude
     );
-    calculateAndDisplayRoute(directionsService, directionsDisplay, myLatlng, getClosestStore());
+    if ($_GET['lat'] && $_GET['lng']) {
+        calculateAndDisplayRoute(directionsService, directionsDisplay, myLatlng, getClosestStore($_GET['lat'], $_GET['lng']));
+    } else {
+        calculateAndDisplayRoute(directionsService, directionsDisplay, myLatlng, getClosestStore());
+    }
 }
 
 // helper function
@@ -51,6 +55,14 @@ function pad(num, size) {
     let s = num+"";
     while (s.length < size) s = "0" + s;
     return s;
+}
+
+// helper function
+var parts = window.location.search.substr(1).split("&");
+var $_GET = {};
+for (var i = 0; i < parts.length; i++) {
+    var temp = parts[i].split("=");
+    $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
 }
 
 $( document ).ready(function() {
