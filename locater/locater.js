@@ -40,12 +40,43 @@ globalVariable = {
           </tr>
         </tbody>
       </table>
-    </div>
-            `
+    </div>`
             );
-        }
-    }
+        }, // end render
+        findClosest: function(lat, lng, count=3) {
+            // rank distances of stores from current location
+            var R = 6371; // radius of earth in km
+            var distances = {};
+            var closest = -1;
+            for( i = 0 ; i < markers.length; i++ ) {
+                var mlat = markers[i].lat;
+                var mlng = markers[i].lng;
+                var dLat  = rad(mlat - lat);
+                var dLong = rad(mlng - lng);
+                var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                    Math.cos(rad(lat)) * Math.cos(rad(lat)) * Math.sin(dLong/2) * Math.sin(dLong/2);
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                var d = R * c;
+                distances[i] = d;
+                if ( closest == -1 || d < distances[closest] ) {
+                    closest = i;
+                }
+            }
+            console.debug(distances);
+            var stores = [];
+            // add count of closest stores
+            for ( i = 0; i < count; i++) {
+                stores.push(distances[i]);
+            }
+            return stores;
+        } // end findClosest
+    } // end locationspage
 }
+
+// helper function
+function rad(x) {return x*Math.PI/180;}
+
 $(document).ready(function(){
-    globalVariable.locationspage.render(markers);
+    let test = globalVariable.locationspage.findClosest(33.7979885, -84.3694475);
+    globalVariable.locationspage.render(test);
 });
