@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions Service</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="gps.css">
+</head>
+<body>
+    <div id="tmob_lightbox" class="center">
+        <div id="appointment">
+            <div class="float-right" id="close_lightbox"> <span class="close-icon"></span></div>
+            <br>
+            Are you on your way now? Let us know you're coming and we will automatically put you in line when you are &lt;3 miles away
+            <br><br>
+            <button id="goToStore" class="btn btn-primary">GO NOW</button>
+            <div id="schedule"></div>
+        </div>
+    </div>
+    <br><br><br>
+    <div id="map"></div>
+    <div class="center">
+        <button class="btn btn-primary" id="getDirections">Get to Tech Square TMobile</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    var directionsService;
+    var directionsDisplay;
+    function initMap() {
+        directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7,
+            center: {lat: 33.0, lng: -84.0}
+        });
+        directionsDisplay.setMap(map);
+
+        var onChangeHandler = function() {};
+        document.getElementById('getDirections').addEventListener('click', findTmobileStore);
+    } // end initMap
+
+    function calculateAndDisplayRoute(directionsService,
+        directionsDisplay, start, end)
+    {
+        directionsService.route({
+            origin: start,
+            destination: end,
+            travelMode: 'DRIVING'
+        }, function(response, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    } // end calculateAndDisplayRoute
+    </script>
+    <script src="gps.js"></script>
+    <script src="ai.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDxZ09HxPVG4lOH51U2exmt3gNwDgXK_Ck&callback=initMap">
+    </script>
+</body>
+</html>
