@@ -1,5 +1,12 @@
 body {
-    background-image: url("assets/tmobilecity.jpg");
     background-repeat: no-repeat;
     background-size: auto;
+}
+#root {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+.white-text {
+    color: white;
 }
