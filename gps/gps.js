@@ -81,8 +81,9 @@ $( document ).ready(function() {
     $(document).on('click', '.confirm', function(){
         let apptTime = $(this).text().substr(6);
         globalVariable.addToBackend(false, false, apptTime, false);
+        $(this).text('We look forward to seeing you!');
         setTimeout(function() {
             location.href = '../';
-        }, 999);
+        }, 2500);
     })
 });

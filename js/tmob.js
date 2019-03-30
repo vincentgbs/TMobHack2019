@@ -14,7 +14,7 @@ globalVariable.addToBackend = function(customer, store, arrival, reason)
         reason = localStorage.getItem('reason');
     }
     try {
-        fetch('/tmob/tmob/home?customer='+customer+'&store='+store+'&arrival='+arrival+'&reason='+reason);
+        // fetch('/tmob/tmob/home?customer='+customer+'&store='+store+'&arrival='+arrival+'&reason='+reason);
     } catch(e) {
         // console.log(e);
     } finally {
