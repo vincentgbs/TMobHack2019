@@ -43,11 +43,12 @@ globalVariable = {
     </div>`
             );
         }, // end render
-        findClosest: function(lat, lng, count=3) {
+        findClosest: function(lat, lng, count=4) {
             // rank distances of stores from current location
             var R = 6371; // radius of earth in km
             var distances = {};
             var closest = -1;
+            var farthest = {id: 0, d: 0};
             for( i = 0 ; i < markers.length; i++ ) {
                 var mlat = markers[i].lat;
                 var mlng = markers[i].lng;
@@ -57,18 +58,20 @@ globalVariable = {
                     Math.cos(rad(lat)) * Math.cos(rad(lat)) * Math.sin(dLong/2) * Math.sin(dLong/2);
                 var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
                 var d = R * c;
-                distances[i] = d;
-                if ( closest == -1 || d < distances[closest] ) {
-                    closest = i;
+                markers[i]['distance'] = Number((d).toFixed(2)); // add distance to markers object
+                /* add markers to distance if they're in the closest 'count' */
+                let len = (Object.keys(distances).length);
+                if (len < count) {
+                    if (d > farthest['d']) {
+                        farthest = {id: i, d: d};
+                    } // else farthest remains the same
+                    distances[i] = (markers[i]);
+                } else if (d < farthest['d']) {
+                    delete distances[(farthest['id'])];
+                    distances[i] = (markers[i]);
                 }
             }
-            console.debug(distances);
-            var stores = [];
-            // add count of closest stores
-            for ( i = 0; i < count; i++) {
-                stores.push(distances[i]);
-            }
-            return stores;
+            return distances;
         } // end findClosest
     } // end locationspage
 }
@@ -77,6 +80,6 @@ globalVariable = {
 function rad(x) {return x*Math.PI/180;}
 
 $(document).ready(function(){
-    let test = globalVariable.locationspage.findClosest(33.7979885, -84.3694475);
-    globalVariable.locationspage.render(test);
+    let stores = globalVariable.locationspage.findClosest(33.7979885, -84.3694475);
+    globalVariable.locationspage.render(stores);
 });
