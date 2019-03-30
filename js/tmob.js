@@ -1,7 +1,5 @@
 var globalVariable = {}; // empty object
-$(document).ready(function(){
-    $.getScript("js/landingpage.js", function() {
-        console.log("loaded landingpage.js");
-        return globalVariable.landingpage.render();
-    });
-});
+globalVariable.addToBackend = function(customer, store, arrival, reason)
+{
+    fetch('/tmob/tmob/home?customer='+customer+'&store='+store+'&arrival='+arrival+'&reason='+reason);
+}
