@@ -1,174 +1,60 @@
-<!DOCTYPE html >
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <title>Creating a Store Locator on Google Maps</title>
-  <style>
-    /* Always set the map height explicitly to define the size of the div
-     * element that contains the map. */
-    #map {
-      height: 100%;
-    }
-    /* Optional: Makes the sample page fill the window. */
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
- </style>
-  </head>
-  <body style="margin:0px; padding:0px;" onload="initMap()">
-    <div>
-         <label for="raddressInput">Search location:</label>
-         <input type="text" id="addressInput" size="15"/>
-        <label for="radiusSelect">Radius:</label>
-        <select id="radiusSelect" label="Radius">
-          <option value="50" selected>50 kms</option>
-          <option value="30">30 kms</option>
-          <option value="20">20 kms</option>
-          <option value="10">10 kms</option>
-        </select>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>TMobile Customer Care</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
-        <input type="button" id="searchButton" value="Search"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="markers.js"></script>
+    <script src="locater.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">T-Mobile Customer Connect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../">Welcome <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../appt">Make an Appointment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://account.t-mobile.com/signin/v2/">My T-Mobile</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Shop</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="https://www.t-mobile.com/cell-phones?icid=WMM_TM_Q417UNAVME_OXNEXWO4KCB11769">New Phones</a>
+                        <a class="dropdown-item" href="https://www.t-mobile.com/internet-devices?icid=WMM_TM_Q417UNAVME_KX7JJ8E0YH11770">Watches and Tablets</a>
+                        <a class="dropdown-item" href="#">5G Vision</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="../appt">
+                <input class="form-control mr-sm-2" type="text" placeholder="Ask a Question" aria-label="Search" name="query">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+            </form>
+        </div>
+    </nav>
+
+    <div id="root">
     </div>
-    <div><select id="locationSelect" style="width: 10%; visibility: hidden"></select></div>
-    <div id="map" style="width: 100%; height: 90%"></div>
-    <script>
-      var map;
-      var markers = [];
-      var infoWindow;
-      var locationSelect;
+</body>
 
-        function initMap() {
-          var sydney = {lat: -33.863276, lng: 151.107977};
-          map = new google.maps.Map(document.getElementById('map'), {
-            center: sydney,
-            zoom: 11,
-            mapTypeId: 'roadmap',
-            mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU}
-          });
-          infoWindow = new google.maps.InfoWindow();
-
-          searchButton = document.getElementById("searchButton").onclick = searchLocations;
-
-          locationSelect = document.getElementById("locationSelect");
-          locationSelect.onchange = function() {
-            var markerNum = locationSelect.options[locationSelect.selectedIndex].value;
-            if (markerNum != "none"){
-              google.maps.event.trigger(markers[markerNum], 'click');
-            }
-          };
-        }
-
-       function searchLocations() {
-         var address = document.getElementById("addressInput").value;
-         var geocoder = new google.maps.Geocoder();
-         searchLocationsNear(null);
-         // geocoder.geocode({address: address}, function(results, status) {
-           // if (status == google.maps.GeocoderStatus.OK) {
-             // searchLocationsNear(results[0].geometry.location);
-           // } else {
-             // console.log(address + ' not found');
-           // }
-         // });
-       }
-
-       function clearLocations() {
-         infoWindow.close();
-         for (var i = 0; i < markers.length; i++) {
-           markers[i].setMap(null);
-         }
-         markers.length = 0;
-
-         locationSelect.innerHTML = "";
-         var option = document.createElement("option");
-         option.value = "none";
-         option.innerHTML = "See all results:";
-         locationSelect.appendChild(option);
-       }
-
-       function searchLocationsNear(center) {
-         clearLocations();
-
-         var radius = document.getElementById('radiusSelect').value;
-         // var searchUrl = 'storelocator.php?lat=' + center.lat() + '&lng=' + center.lng() + '&radius=' + radius;
-         var searchUrl = 'markers.xml';
-         downloadUrl(searchUrl, function(data) {
-           var xml = parseXml(data);
-           var markerNodes = xml.documentElement.getElementsByTagName("marker");
-           var bounds = new google.maps.LatLngBounds();
-           for (var i = 0; i < markerNodes.length; i++) {
-             var id = markerNodes[i].getAttribute("id");
-             var name = markerNodes[i].getAttribute("name");
-             var address = markerNodes[i].getAttribute("address");
-             var distance = parseFloat(markerNodes[i].getAttribute("distance"));
-             var latlng = new google.maps.LatLng(
-                  parseFloat(markerNodes[i].getAttribute("lat")),
-                  parseFloat(markerNodes[i].getAttribute("lng")));
-
-             createOption(name, distance, i);
-             createMarker(latlng, name, address);
-             bounds.extend(latlng);
-           }
-           map.fitBounds(bounds);
-           locationSelect.style.visibility = "visible";
-           locationSelect.onchange = function() {
-             var markerNum = locationSelect.options[locationSelect.selectedIndex].value;
-             google.maps.event.trigger(markers[markerNum], 'click');
-           };
-         });
-       }
-
-       function createMarker(latlng, name, address) {
-          var html = "<b>" + name + "</b> <br/>" + address;
-          var marker = new google.maps.Marker({
-            map: map,
-            position: latlng
-          });
-          google.maps.event.addListener(marker, 'click', function() {
-            infoWindow.setContent(html);
-            infoWindow.open(map, marker);
-          });
-          markers.push(marker);
-        }
-
-       function createOption(name, distance, num) {
-          var option = document.createElement("option");
-          option.value = num;
-          option.innerHTML = name;
-          locationSelect.appendChild(option);
-       }
-
-       function downloadUrl(url, callback) {
-          var request = window.ActiveXObject ?
-              new ActiveXObject('Microsoft.XMLHTTP') :
-              new XMLHttpRequest;
-
-          request.onreadystatechange = function() {
-            if (request.readyState == 4) {
-              request.onreadystatechange = doNothing;
-              callback(request.responseText, request.status);
-            }
-          };
-
-          request.open('GET', url, true);
-          request.send(null);
-       }
-
-       function parseXml(str) {
-          if (window.ActiveXObject) {
-            var doc = new ActiveXObject('Microsoft.XMLDOM');
-            doc.loadXML(str);
-            return doc;
-          } else if (window.DOMParser) {
-            return (new DOMParser).parseFromString(str, 'text/xml');
-          }
-       }
-
-       function doNothing() {}
-  </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxZ09HxPVG4lOH51U2exmt3gNwDgXK_Ck&callback=initMap">
-    </script>
-  </body>
 </html>
