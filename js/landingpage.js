@@ -101,6 +101,7 @@ globalVariable.landingpage = {
             <h1 class="display-4 font-weight-normal">Heading to a store?</h1>
             <p class="lead font-weight-normal">Check-in, avoid a line, and get a great deal.</p>
             <button class="btn btn-outline-secondary" id="startButton">Check-in</button>
+            <button class="btn btn-primary" id="locationsButton">Locations</button>
 
           </div>
           <div class="product-device shadow-sm d-none d-md-block"></div>
