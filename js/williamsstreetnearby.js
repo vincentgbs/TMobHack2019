@@ -21,7 +21,7 @@ globalVariable.williams = {
         <td>85 5th St NW, Atlanta, GA, 30308</td>
         <td>0.00 miles</td>
         <td>
-          <button class="btn btn-danger" id="williamsButton">20% Off</button>
+          <button class="btn btn-danger" id="moesButton">$2 Off</button>
         </td>
       </tr>
       <tr>

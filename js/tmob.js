@@ -29,5 +29,12 @@ $(document).ready(function(){
         });
     });
 
+    $(document).on('click', '#moesButton', function() {
+        $.getScript("js/moescoupon.js", function() {
+            console.log("loaded moescoupon.js");
+            return globalVariable.moescoupon.render();
+        });
+    });
+
 
 });
