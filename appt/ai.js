@@ -11,6 +11,11 @@ var ai = {
         } // else
         return '';
     },
+    submitReason: function(button) {
+        let reason = button.text().trim();
+        window.localStorage.setItem('reason', reason);
+        location.href = '../gps';
+    },
     dictionary: {
         'bill': `<div>
             <button class="btn btn-primary col-6 appt"> current bill </button><br>
@@ -37,21 +42,20 @@ var ai = {
             <button class="btn btn-primary col-6 appt"> international plan</button><br>
             <button class="btn btn-primary col-6 appt"> travel abroad </button><br>
             </div>`,
-    'unlock': `<div>
-      <button class="btn btn-primary col-6 appt"> unlock device</button><br>
-      <button class="btn btn-primary col-6 appt"> device autorization code plan</button><br>
-      <button class="btn btn-primary col-6 appt"> device activation </button><br>
-      </div>`,
-    'accessories': `<div>
-        <button class="btn btn-primary col-6 appt"> screen protector</button><br>
-        <button class="btn btn-primary col-6 appt"> usb car charger</button><br>
-        <button class="btn btn-primary col-6 appt"> cell phone case </button><br>
-        </div>`,
-    'plan': `<div>
-        <button class="btn btn-primary col-6 appt"> current bill </button><br>
-        <button class="btn btn-primary col-6 appt"> taxes fees </button><br>
-        <button class="btn btn-primary col-6 appt"> change plan </button><br>
-        </div>`
-
+        'unlock': `<div>
+          <button class="btn btn-primary col-6 appt"> unlock device</button><br>
+          <button class="btn btn-primary col-6 appt"> device autorization code plan</button><br>
+          <button class="btn btn-primary col-6 appt"> device activation </button><br>
+          </div>`,
+        'accessories': `<div>
+            <button class="btn btn-primary col-6 appt"> screen protector</button><br>
+            <button class="btn btn-primary col-6 appt"> usb car charger</button><br>
+            <button class="btn btn-primary col-6 appt"> cell phone case </button><br>
+            </div>`,
+        'plan': `<div>
+            <button class="btn btn-primary col-6 appt"> current bill </button><br>
+            <button class="btn btn-primary col-6 appt"> taxes fees </button><br>
+            <button class="btn btn-primary col-6 appt"> change plan </button><br>
+            </div>`
     }
 }

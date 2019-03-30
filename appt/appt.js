@@ -24,7 +24,6 @@ $( document ).ready(function() {
     });
 
     $(document).on("click", '.appt', function(e) {
-        let reason = $(this).text();
-        console.log(reason + ": We don't have access to the Tmobile documentation for this reason code");
+        ai.submitReason($(this));
     });
 });

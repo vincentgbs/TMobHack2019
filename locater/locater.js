@@ -17,7 +17,6 @@ globalVariable = {
             $("body").css('background-image', '');
             $("#root").html(
                 `<h1>Locations</h1>
-            <!-- <input type="text" id="locationsInput"> -->
             <hr>
             </div>
             <div class="container">

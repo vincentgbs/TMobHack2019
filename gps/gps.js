@@ -77,4 +77,12 @@ $( document ).ready(function() {
             return hideLightbox();
         }
     });
+
+    $(document).on('click', '.confirm', function(){
+        let apptTime = $(this).text().substr(6);
+        globalVariable.addToBackend(false, false, apptTime, false);
+        setTimeout(function() {
+            location.href = '../';
+        }, 999);
+    })
 });
