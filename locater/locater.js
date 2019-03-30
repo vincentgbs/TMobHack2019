@@ -71,15 +71,33 @@ globalVariable = {
                     distances[i] = (markers[i]);
                 }
             }
+            console.debug(distances);
             return distances;
         } // end findClosest
     } // end locationspage
+}
+
+function errorCallback() { console.log("errorCallback"); }
+function initGeolocation() {
+    if (navigator && navigator.geolocation) {
+        var watchId = navigator.geolocation.watchPosition(
+            successCallback,
+            errorCallback,
+            {enableHighAccuracy:true,timeout:60000,maximumAge:0}
+        );
+    } else {
+        alert('Geolocation is not supported on this device');
+    }
+}
+function successCallback(position) {
+    globalVariable.locationspage.render(
+        globalVariable.locationspage.findClosest(position.coords.latitude, position.coords.longitude)
+    );
 }
 
 // helper function
 function rad(x) {return x*Math.PI/180;}
 
 $(document).ready(function(){
-    let stores = globalVariable.locationspage.findClosest(33.7979885, -84.3694475);
-    globalVariable.locationspage.render(stores);
+    //
 });
