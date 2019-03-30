@@ -43,7 +43,11 @@ function successCallback(position) {
         position.coords.latitude,
         position.coords.longitude
     );
-    if ($_GET['lat'] && $_GET['lng']) {
+    if ($_GET['lat'] == position.coords.latitude
+    && $_GET['lng'] == position.coords.longitude) {
+        console.log('You have arrived');
+        window.location.replace("../wait");
+    } else if ($_GET['lat'] && $_GET['lng']) {
         calculateAndDisplayRoute(directionsService, directionsDisplay, myLatlng, getClosestStore($_GET['lat'], $_GET['lng']));
     } else { // defaults to Tech Square Tmobile
         calculateAndDisplayRoute(directionsService, directionsDisplay, myLatlng, getClosestStore());

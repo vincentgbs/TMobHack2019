@@ -1,3 +1,4 @@
+var globalVariable = {};
 globalVariable.williams = {
     render: function() {
         $("body").css('background-image', '');
@@ -5,7 +6,7 @@ globalVariable.williams = {
             `<br><br><br>
         <div class="container">
   <h2>What's Nearby</h2>
-  <p>Get deals at local spots</p>            
+  <p>Get deals at local spots</p>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -64,3 +65,15 @@ globalVariable.williams = {
     //     $("#displayOptions").text($("#questionInput").val());
     // }
 }
+
+$(document).ready(function(){
+    globalVariable.williams.render();
+
+    $(document).on('click', '#moesButton', function() {
+        $.getScript("./moescoupon.js", function() {
+            console.log("loaded moescoupon.js");
+            return globalVariable.moescoupon.render();
+        });
+    });
+
+});
