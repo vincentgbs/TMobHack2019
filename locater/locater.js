@@ -40,8 +40,7 @@ globalVariable = {
           </tr>
         </tbody>
       </table>
-    </div>`
-            );
+    </div>`);
         }, // end render
         findClosest: function(lat, lng, count=4) {
             // rank distances of stores from current location
@@ -71,7 +70,6 @@ globalVariable = {
                     distances[i] = (markers[i]);
                 }
             }
-            console.debug(distances);
             return distances;
         } // end findClosest
     } // end locationspage
@@ -90,9 +88,10 @@ function initGeolocation() {
     }
 }
 function successCallback(position) {
-    globalVariable.locationspage.render(
-        globalVariable.locationspage.findClosest(position.coords.latitude, position.coords.longitude)
-    );
+    var stores = globalVariable.locationspage.findClosest(position.coords.latitude, position.coords.longitude);
+    setTimeout(function(){
+        globalVariable.locationspage.render(stores);
+    }, 999);
 }
 
 // helper function
