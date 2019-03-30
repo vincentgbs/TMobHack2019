@@ -76,10 +76,18 @@
     function initMap() {
         directionsService = new google.maps.DirectionsService;
         directionsDisplay = new google.maps.DirectionsRenderer;
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
-            center: {lat: 33.777, lng: -84.399}
-        });
+        if ($_GET['lat'] && $_GET['lng']) {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {lat: parseFloat($_GET['lat']),
+                    lng: parseFloat($_GET['lng'])}
+            });
+        } else {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: {lat: 33.777, lng: -84.399}
+            });
+        }
         directionsDisplay.setMap(map);
 
         var onChangeHandler = function() {};

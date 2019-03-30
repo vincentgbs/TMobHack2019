@@ -35,7 +35,7 @@ globalVariable = {
       </table>
     </div>`);
         }, // end render
-        findClosest: function(lat, lng, max=25) {
+        findClosest: function(lat, lng, max=50) {
             // rank distances of stores from current location
             var R = 6371; // radius of earth in km
             var distances = {};
