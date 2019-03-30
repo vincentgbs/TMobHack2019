@@ -80,8 +80,8 @@ function successCallback(position) {
         var html = globalVariable.locationspage.populateStores(stores);
         setTimeout(function(){
             globalVariable.locationspage.render(html);
-        }, 555);
-    }, 555);
+        }, 111);
+    }, 222);
 }
 
 // helper function

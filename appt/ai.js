@@ -13,44 +13,44 @@ var ai = {
     },
     dictionary: {
         'bill': `<div>
-            <button class="btn btn-info col-12 appt"> current bill </button><br>
-            <button class="btn btn-info col-12 appt"> taxes fees </button><br>
-            <button class="btn btn-info col-12 appt"> change plan </button><br>
+            <button class="btn btn-primary col-6 appt"> current bill </button><br>
+            <button class="btn btn-primary col-6 appt"> taxes fees </button><br>
+            <button class="btn btn-primary col-6 appt"> change plan </button><br>
             </div>`,
         'phone': `<div>
-            <button class="btn btn-info col-12 appt"> view plan </button><br>
-            <button class="btn btn-info col-12 appt"> service </button><br>
-            <button class="btn btn-info col-12 appt"> buy a device </button><br>
+            <button class="btn btn-primary col-6 appt"> view plan </button><br>
+            <button class="btn btn-primary col-6 appt"> service </button><br>
+            <button class="btn btn-primary col-6 appt"> buy a device </button><br>
             </div>`,
         'gsm': `<div>
-            <button class="btn btn-info col-12 appt"> unlock </button><br>
-            <button class="btn btn-info col-12 appt"> international </button><br>
-            <button class="btn btn-info col-12 appt"> SIM card </button><br>
+            <button class="btn btn-primary col-6 appt"> unlock </button><br>
+            <button class="btn btn-primary col-6 appt"> international </button><br>
+            <button class="btn btn-primary col-6 appt"> SIM card </button><br>
             </div>`,
         'jailbreak': `<div>
-            <button class="btn btn-info col-12 appt"> warranty </button><br>
-            <button class="btn btn-info col-12 appt"> user agreement </button><br>
-            <button class="btn btn-info col-12 appt"> apple device policy </button><br>
+            <button class="btn btn-primary col-6 appt"> warranty </button><br>
+            <button class="btn btn-primary col-6 appt"> user agreement </button><br>
+            <button class="btn btn-primary col-6 appt"> apple device policy </button><br>
             </div>`,
         'travel': `<div>
-            <button class="btn btn-info col-12 appt"> unlock </button><br>
-            <button class="btn btn-info col-12 appt"> international plan</button><br>
-            <button class="btn btn-info col-12 appt"> travel abroad </button><br>
+            <button class="btn btn-primary col-6 appt"> unlock </button><br>
+            <button class="btn btn-primary col-6 appt"> international plan</button><br>
+            <button class="btn btn-primary col-6 appt"> travel abroad </button><br>
             </div>`,
     'unlock': `<div>
-      <button class="btn btn-info col-12 appt"> unlock device</button><br>
-      <button class="btn btn-info col-12 appt"> device autorization code plan</button><br>
-      <button class="btn btn-info col-12 appt"> device activation </button><br>
+      <button class="btn btn-primary col-6 appt"> unlock device</button><br>
+      <button class="btn btn-primary col-6 appt"> device autorization code plan</button><br>
+      <button class="btn btn-primary col-6 appt"> device activation </button><br>
       </div>`,
     'accessories': `<div>
-        <button class="btn btn-info col-12 appt"> screen protector</button><br>
-        <button class="btn btn-info col-12 appt"> usb car charger</button><br>
-        <button class="btn btn-info col-12 appt"> cell phone case </button><br>
+        <button class="btn btn-primary col-6 appt"> screen protector</button><br>
+        <button class="btn btn-primary col-6 appt"> usb car charger</button><br>
+        <button class="btn btn-primary col-6 appt"> cell phone case </button><br>
         </div>`,
     'plan': `<div>
-        <button class="btn btn-info col-12 appt"> current bill </button><br>
-        <button class="btn btn-info col-12 appt"> taxes fees </button><br>
-        <button class="btn btn-info col-12 appt"> change plan </button><br>
+        <button class="btn btn-primary col-6 appt"> current bill </button><br>
+        <button class="btn btn-primary col-6 appt"> taxes fees </button><br>
+        <button class="btn btn-primary col-6 appt"> change plan </button><br>
         </div>`
 
     }
